@@ -16,18 +16,29 @@ python3 find_businesses.py --city "Dallas, TX" --radius 8
 Creates `leads.csv` with company name, category, website, phone, and (when the
 business publishes one) their contact email.
 
-## 2. Review the leads
+## 2. Auto-fill missing emails
+
+```bash
+python3 find_emails.py
+```
+
+Visits each business's own website (homepage + contact page, one per second)
+and fills the `email` column with the address the business publishes there.
+Tip: delete obvious bad-fit rows first so it doesn't waste time on them.
+Existing emails and your other edits are never overwritten.
+
+## 3. Review the leads
 
 Open `leads.csv` in Excel or Google Sheets. For each business:
 
 - Visit their website. If it's already great, or they're a big chain, delete the row.
-- If they're a good fit: paste their **email** (from their contact page) into the
-  `email` column, and write one honest sentence about *their* site in
-  `personal_note` — e.g. "I noticed the menu page doesn't load on mobile."
-  This sentence is what makes the email feel human. Don't skip it.
+- If they're a good fit: make sure **email** is filled (for stragglers, check
+  their contact page yourself), and write one honest sentence about *their*
+  site in `personal_note` — e.g. "I noticed the menu page doesn't load on
+  mobile." This sentence is what makes the email feel human. Don't skip it.
 - Put `YES` in the `send` column.
 
-## 3. Generate drafts
+## 4. Generate drafts
 
 ```bash
 python3 make_drafts.py --name "Your Name" --address "Your mailing address"
