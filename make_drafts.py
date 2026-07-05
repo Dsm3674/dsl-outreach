@@ -38,7 +38,7 @@ def main() -> None:
     made = skipped = 0
     with open(args.leads, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            if row.get("send", "").strip().upper() != "YES":
+            if row.get("send", "").strip().upper() not in ("YES", "Y", "TRUE", "X"):
                 continue
             company = row.get("company", "").strip()
             email = row.get("email", "").strip()
