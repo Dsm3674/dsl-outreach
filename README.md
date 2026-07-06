@@ -56,13 +56,13 @@ great, or they're a big chain, skip them.
 ## 5. Generate drafts
 
 ```bash
-python3 make_drafts.py --name "Your Name" --address "Your mailing address" \
-    --website "https://your-studio-site.com"
+python3 make_drafts.py
 ```
 
-`--website` links DSL's own site in every draft, right next to the Instagram
-handle, so prospects can see the quality of work first-hand. Leave it off and
-drafts fall back to Instagram only.
+Drafts are signed as Divyanshu, DSL Development, 7322 Ridgepoint Drive,
+Irving, TX 75063, and every draft links https://dsl.homes next to the
+Instagram handle so prospects can see the quality of work first-hand.
+Override any of these with `--name`, `--address`, or `--website`.
 
 One `.txt` file per approved lead appears in `drafts/`. Read each one, copy it
 into Gmail, and send.

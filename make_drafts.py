@@ -6,8 +6,9 @@ Each draft is saved as its own .txt file in drafts/ — read it, then copy it in
 your email app and send it yourself. Keep it to a handful a day.
 
 Usage:
-    python3 make_drafts.py --name "Your Name" --address "123 Main St, Dallas, TX 75201" \
-        --website "https://your-studio-site.com"
+    python3 make_drafts.py
+    (defaults: Divyanshu / 7322 Ridgepoint Drive, Irving, TX 75063 / https://dsl.homes —
+     override with --name, --address, --website)
 """
 
 import argparse
@@ -27,10 +28,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--leads", default=HERE / "leads.csv")
     ap.add_argument("--template", default=HERE / "template.txt")
-    ap.add_argument("--name", required=True, help="your real name for the signature")
-    ap.add_argument("--address", required=True,
+    ap.add_argument("--name", default="Divyanshu",
+                    help="your real name for the signature")
+    ap.add_argument("--address", default="7322 Ridgepoint Drive, Irving, TX 75063",
                     help="your real mailing address (required on commercial email by US law)")
-    ap.add_argument("--website", default="",
+    ap.add_argument("--website", default="https://dsl.homes",
                     help="DSL's own website URL, linked in every draft to show recent work")
     args = ap.parse_args()
 

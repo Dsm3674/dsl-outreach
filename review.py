@@ -39,7 +39,7 @@ def main() -> None:
     if not pending:
         done = sum(1 for r in rows if r.get("send", "").strip().upper() in ("YES", "Y"))
         print(f"All reviewed! {done} businesses are marked to pitch.")
-        print('Next: python3 make_drafts.py --name "Your Name" --address "Your address"')
+        print("Next: python3 make_drafts.py")
         return
 
     print(f"{len(pending)} businesses to review. Each website opens in your browser.")
@@ -97,7 +97,7 @@ def main() -> None:
     print("─" * 60)
     print(f"Saved. {yes} businesses marked to pitch, {left} still undecided.")
     if yes:
-        print('Next: python3 make_drafts.py --name "Your Name" --address "Your street, City, TX ZIP"')
+        print("Next: python3 make_drafts.py")
     if left:
         print("Run python3 review.py again anytime to continue where you left off.")
 
