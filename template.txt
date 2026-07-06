@@ -6,7 +6,7 @@ I was looking at {category} businesses in the area and spent a few minutes on yo
 
 I run DSL Development, a small web design studio. I think a redesign could help {company} stand out — a cleaner, modern layout that works well on phones and makes it easy for new customers to find and contact you.
 
-Custom sites start at $700, and you can see recent work on our Instagram: @dsl.development.
+Custom sites start at $700, and you can see recent work on {portfolio}.
 
 If you're interested, I'll send over one or two specific ideas for your site — no obligation. Just reply to this email.
 

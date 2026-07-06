@@ -27,22 +27,42 @@ and fills the `email` column with the address the business publishes there.
 Tip: delete obvious bad-fit rows first so it doesn't waste time on them.
 Existing emails and your other edits are never overwritten.
 
-## 3. Review the leads
-
-Open `leads.csv` in Excel or Google Sheets. For each business:
-
-- Visit their website. If it's already great, or they're a big chain, delete the row.
-- If they're a good fit: make sure **email** is filled (for stragglers, check
-  their contact page yourself), and write one honest sentence about *their*
-  site in `personal_note` — e.g. "I noticed the menu page doesn't load on
-  mobile." This sentence is what makes the email feel human. Don't skip it.
-- Put `YES` in the `send` column.
-
-## 4. Generate drafts
+## 3. Scan their websites for problems DSL can fix
 
 ```bash
-python3 make_drafts.py --name "Your Name" --address "Your mailing address"
+python3 scan_websites.py
 ```
+
+Visits each lead's homepage (one per second) and fills a `site_issues` column
+with concrete, honest problems a redesign fixes: not phone-friendly, no HTTPS,
+slow load, broken certificate, stale copyright year, missing the SEO basics,
+Flash/frames. Each finding is worded so it drops straight into the email as
+"I noticed ...". Re-running only scans new rows; `--refresh` re-scans all.
+
+## 4. Review the leads
+
+```bash
+python3 review.py
+```
+
+Opens each website in your browser, shows what the scanner found, and offers
+the top finding as a ready-made `personal_note` — press Enter to accept it or
+type your own sentence. (You can still do this step in Excel/Google Sheets
+instead: write the note in `personal_note` and put `YES` in `send`.)
+
+Either way, look at every site yourself before pitching: if it's already
+great, or they're a big chain, skip them.
+
+## 5. Generate drafts
+
+```bash
+python3 make_drafts.py --name "Your Name" --address "Your mailing address" \
+    --website "https://your-studio-site.com"
+```
+
+`--website` links DSL's own site in every draft, right next to the Instagram
+handle, so prospects can see the quality of work first-hand. Leave it off and
+drafts fall back to Instagram only.
 
 One `.txt` file per approved lead appears in `drafts/`. Read each one, copy it
 into Gmail, and send.

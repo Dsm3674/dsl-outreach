@@ -6,7 +6,7 @@ I was looking at {category} businesses in Tel Aviv and spent a few minutes on yo
 
 I run DSL Development, a small web design studio. I think a redesign could help {company} stand out — a clean, modern layout that works well on phones, in both Hebrew and English, and makes it easy for new customers to find and contact you.
 
-Custom sites start at $700 USD, and you can see recent work on our Instagram: @dsl.development.
+Custom sites start at $700 USD, and you can see recent work on {portfolio}.
 
 If you're interested, I'll send over one or two specific ideas for your site — no obligation. Just reply to this email.
 

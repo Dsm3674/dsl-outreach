@@ -78,6 +78,8 @@ def find_businesses(lat: float, lon: float, radius_m: int) -> list[dict]:
             "address": ", ".join(x for x in (street, tags.get("addr:city")) if x),
             # The business's own published contact email, when they list one.
             "email": tags.get("email") or tags.get("contact:email") or "",
+            # scan_websites.py fills this with problems DSL could fix:
+            "site_issues": "",
             # Fill these two in yourself while you look at each website:
             "personal_note": "",
             "send": "",  # put YES here once you've reviewed the site and the draft
@@ -111,10 +113,9 @@ def main() -> None:
     with_email = sum(1 for l in leads if l["email"])
     print(f"\nSaved {len(leads)} businesses to {args.out} ({with_email} already list a public email).")
     print("Next steps:")
-    print("  1. Open leads.csv in Excel/Sheets or Numbers.")
-    print("  2. Visit each website. Delete rows that are a bad fit.")
-    print("  3. For keepers: fill in 'email' (from their contact page) and write a")
-    print("     one-sentence 'personal_note' about THEIR site. Put YES in 'send'.")
+    print("  1. Run: python3 find_emails.py     (fills in missing emails)")
+    print("  2. Run: python3 scan_websites.py   (notes problems DSL could fix)")
+    print("  3. Run: python3 review.py          (approve leads + personal notes)")
     print("  4. Run: python3 make_drafts.py")
 
 

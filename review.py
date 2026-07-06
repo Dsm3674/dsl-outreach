@@ -2,8 +2,10 @@
 """Review your leads one at a time, right in the terminal — no spreadsheet needed.
 
 For each business it opens their website in your browser and asks whether to
-pitch them. Answers are saved into leads.csv immediately, so you can quit any
-time with q and pick up where you left off later.
+pitch them. If you ran scan_websites.py first, the problems it found are shown
+too, and the first one is offered as a ready-made personal_note. Answers are
+saved into leads.csv immediately, so you can quit any time with q and pick up
+where you left off later.
 
 Usage:
     python3 review.py
@@ -51,6 +53,12 @@ def main() -> None:
         print(f"{company}   ({row.get('category', '')})")
         print(f"  website: {row.get('website', '')}")
         print(f"  email:   {row.get('email', '').strip() or '(none found — check their site)'}")
+        issues = [p.strip() for p in row.get("site_issues", "").split(";") if p.strip()]
+        if issues == ["no obvious problems found"]:
+            issues = []
+            print("  scan:    no obvious problems found — is a pitch honest here?")
+        for issue in issues:
+            print(f"  scan:    {issue}")
         webbrowser.open(row.get("website", ""))
 
         ans = input("Pitch this business? [y/n/Enter/q] ").strip().lower()
@@ -71,8 +79,12 @@ def main() -> None:
                 print(f"  Current note: {note}")
                 new = input("  New note (Enter to keep current): ").strip()
                 note = new or note
+            suggestion = f"I noticed {issues[0]}." if issues else ""
             while not note:
-                note = input("  One honest sentence about THEIR website: ").strip()
+                if suggestion:
+                    note = input(f'  Note about THEIR site (Enter = "{suggestion}"): ').strip() or suggestion
+                else:
+                    note = input("  One honest sentence about THEIR website: ").strip()
             row["personal_note"] = note
             row["send"] = "YES"
             print(f"  ✓ {company} will get a draft.")
